@@ -1,6 +1,6 @@
 class Board
-    def initialize
-        @grid = Array.new(3) { Array.new(3, '_') }
+    def initialize(n)
+        @grid = Array.new(n) { Array.new(n, '_') }
     end
 
     def valid?(pos)
@@ -37,7 +37,7 @@ class Board
     end
 
     def win_diagonal?(mark)
-        diagonals = [@grid, @grid.reverse].collect do |grid|
+        diagonals = [@grid, @grid.reverse].map do |grid|
             grid.each_with_index.inject([]) { |diagonal, (row, i)| diagonal << row[i] }
         end
         diagonals.any? { |diagonal| diagonal.all?(mark) }

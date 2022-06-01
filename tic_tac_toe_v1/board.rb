@@ -37,7 +37,7 @@ class Board
     end
 
     def win_diagonal?(mark)
-        diagonals = [@grid, @grid.reverse].collect do |grid|
+        diagonals = [@grid, @grid.reverse].map do |grid|
             grid.each_with_index.inject([]) { |diagonal, (row, i)| diagonal << row[i] }
         end
         diagonals.any? { |diagonal| diagonal.all?(mark) }
